@@ -6,15 +6,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class User {
+public class ToDoListEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String username;
+    private String name;
 
-    private String password;
+    private String priority;
 
     public Integer getId() {
         return id;
@@ -24,19 +24,19 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPriority() {
+        return priority;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPriority(String priority) {
+        this.priority = priority;
     }
 }

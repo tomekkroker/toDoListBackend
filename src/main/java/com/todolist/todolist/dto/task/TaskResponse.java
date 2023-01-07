@@ -1,25 +1,30 @@
-package com.todolist.todolist.model;
+package com.todolist.todolist.dto.task;
 
+import com.sun.istack.NotNull;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.time.LocalDate;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
-@Entity
-public class Task {
+@ApiModel(description = "Klasa reprezentująca odpowiedź zawierającą informacje o liście zadań.")
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class TaskResponse {
+
+    @NotNull
+    @ApiModelProperty(notes = "ID zadania")
     private Integer id;
 
+    @NotNull
+    @ApiModelProperty(notes = "Nazwa")
     private String name;
 
+    @ApiModelProperty(notes = "Priorytet")
     private String priority;
 
+    @ApiModelProperty(notes = "Deadline")
     private LocalDate deadline;
 
-    private Integer listId;
+    @ApiModelProperty(notes = "Opis")
+    private String description;
 
     public Integer getId() {
         return id;
@@ -53,11 +58,11 @@ public class Task {
         this.deadline = deadline;
     }
 
-    public Integer getListId() {
-        return listId;
+    public String getDescription() {
+        return description;
     }
 
-    public void setListId(Integer listId) {
-        this.listId = listId;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
