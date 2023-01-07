@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.time.LocalDate;
 
 @Entity
 public class ToDoList {
@@ -15,11 +14,7 @@ public class ToDoList {
 
     private String name;
 
-    private LocalDate deadline;
-
     private String priority;
-
-    private String description;
 
     public Integer getId() {
         return id;
@@ -37,27 +32,11 @@ public class ToDoList {
         this.name = name;
     }
 
-    public LocalDate getDeadline() {
-        return deadline;
-    }
-
-    public void setDeadline(LocalDate deadline) {
-        this.deadline = deadline;
-    }
-
     public String getPriority() {
         return priority;
     }
 
     public void setPriority(String priority) {
         this.priority = priority;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

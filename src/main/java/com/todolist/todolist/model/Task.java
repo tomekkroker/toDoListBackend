@@ -1,5 +1,6 @@
 package com.todolist.todolist.model;
 
+import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +15,9 @@ public class Task {
 
     private String name;
 
-    private boolean isChecked;
+    private String priority;
+
+    private LocalDate deadline;
 
     private Integer listId;
 
@@ -34,12 +37,20 @@ public class Task {
         this.name = name;
     }
 
-    public boolean isChecked() {
-        return isChecked;
+    public String getPriority() {
+        return priority;
     }
 
-    public void setChecked(boolean checked) {
-        isChecked = checked;
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
+
+    public LocalDate getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(LocalDate deadline) {
+        this.deadline = deadline;
     }
 
     public Integer getListId() {
