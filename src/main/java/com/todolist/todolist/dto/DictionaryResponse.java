@@ -1,6 +1,7 @@
 package com.todolist.todolist.dto;
 
 import com.sun.istack.NotNull;
+import com.todolist.todolist.model.ListEntity;
 import com.todolist.todolist.model.TaskEntity;
 import lombok.Builder;
 
@@ -39,6 +40,13 @@ public class DictionaryResponse {
     }
 
     public static DictionaryResponse fromEntity(TaskEntity entity) {
+        return  DictionaryResponse.builder()
+                .id(entity.getId())
+                .name(entity.getName())
+                .build();
+    }
+
+    public static DictionaryResponse fromEntity(ListEntity entity) {
         return  DictionaryResponse.builder()
                 .id(entity.getId())
                 .name(entity.getName())

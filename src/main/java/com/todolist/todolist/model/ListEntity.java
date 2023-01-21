@@ -5,10 +5,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
-@Table(name = "list", schema = "public")
+@Builder
 @Entity
-public class ToDoListEntity {
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "list", schema = "public")
+public class ListEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

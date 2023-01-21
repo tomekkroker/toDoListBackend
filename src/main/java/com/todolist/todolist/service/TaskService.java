@@ -62,5 +62,4 @@ public class TaskService {
                 .priority(dto.getPriority())
                 .build();
     }
-
 }

@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import lombok.Builder;
 
 @ApiModel(description = "Klasa reprezentująca odpowiedź zawierającą informacje o liście zadań.")
-
 @Builder
 public class TaskResponse {
 
