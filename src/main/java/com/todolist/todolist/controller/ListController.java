@@ -8,6 +8,7 @@ import com.todolist.todolist.utils.BasicResponse;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,7 +40,7 @@ public class ListController {
     @PostMapping
     public ResponseEntity<BasicResponse> createList(@Valid @RequestBody ListRequest request) {
         var dto = listService.createList(request);
-        return ResponseEntity.created(UriBuilder.getUri("/task/{id}", dto.getId())).body(
+        return ResponseEntity.created(UriBuilder.getUri("/list/{id}", dto.getId())).body(
                 new BasicResponse(true, "Pomyślnie utworzono listę", dto)
         );
     }
@@ -52,5 +53,11 @@ public class ListController {
                 "Pomyślnie edytowano listę",
                 listService.editList(id, request)
         ));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<BasicResponse> deleteListTask(@PathVariable Integer id) {
+        listService.deleteList(id);
+        return ResponseEntity.ok(new BasicResponse(true, "Pomyślnie usunięto listę"));
     }
 }

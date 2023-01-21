@@ -53,6 +53,15 @@ public class ListService {
         return ListResponse.fromEntity(listRepository.save(fromSimpleDto(request)));
     }
 
+    @Transactional
+    public void deleteList(Integer id) {
+        if (listRepository.existsById(id)) {
+            listRepository.deleteById(id);
+        } else {
+            throw new NotFoundException("List", "id", id);
+        }
+    }
+
     public ListEntity fromSimpleDto(ListRequest dto) {
         return ListEntity.builder()
                 .name(dto.getName())

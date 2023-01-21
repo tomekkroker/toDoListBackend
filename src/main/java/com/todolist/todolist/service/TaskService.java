@@ -53,6 +53,15 @@ public class TaskService {
         return TaskResponse.fromEntity(taskRepository.save(fromSimpleDto(request)));
     }
 
+    @Transactional
+    public void deleteTask(Integer id) {
+        if (taskRepository.existsById(id)) {
+            taskRepository.deleteById(id);
+        } else {
+            throw new NotFoundException("Task", "id", id);
+        }
+    }
+
     public TaskEntity fromSimpleDto(TaskRequest dto) {
         return TaskEntity.builder()
                 .id(dto.getId())

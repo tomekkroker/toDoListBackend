@@ -4,12 +4,13 @@ public class BasicResponse {
 
     private Boolean success;
     private String message;
-    private Object dto;
 
     public BasicResponse(Boolean success, String message, Object dto) {
         this.success = success;
         this.message = message;
-        this.dto = dto;
+    }
+
+    public BasicResponse(boolean success, String task_deleted_successfully) {
     }
 
     public Boolean getSuccess() {
@@ -26,13 +27,5 @@ public class BasicResponse {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public Object getDto() {
-        return dto;
-    }
-
-    public void setDto(Object dto) {
-        this.dto = dto;
     }
 }

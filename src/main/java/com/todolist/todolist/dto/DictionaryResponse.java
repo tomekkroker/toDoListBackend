@@ -43,6 +43,7 @@ public class DictionaryResponse {
         return  DictionaryResponse.builder()
                 .id(entity.getId())
                 .name(entity.getName())
+                .description(entity.getDescription())
                 .build();
     }
 
