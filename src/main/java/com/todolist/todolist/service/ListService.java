@@ -1,6 +1,5 @@
 package com.todolist.todolist.service;
 
-import com.todolist.todolist.dto.DictionaryResponse;
 import com.todolist.todolist.dto.todolist.ListRequest;
 import com.todolist.todolist.dto.todolist.ListResponse;
 import com.todolist.todolist.model.ListEntity;
@@ -28,9 +27,9 @@ public class ListService {
     }
 
     @Transactional
-    public List<DictionaryResponse> getLists() {
+    public List<ListResponse> getLists() {
         return listRepository.findAll().stream()
-                .map(DictionaryResponse::fromEntity)
+                .map(ListResponse::fromEntity)
                 .collect(Collectors.toList());
     }
 

@@ -1,6 +1,5 @@
 package com.todolist.todolist.controller;
 
-import com.todolist.todolist.dto.DictionaryResponse;
 import com.todolist.todolist.dto.todolist.ListRequest;
 import com.todolist.todolist.dto.todolist.ListResponse;
 import com.todolist.todolist.service.ListService;
@@ -33,14 +32,14 @@ public class ListController {
     }
 
     @GetMapping
-    public ResponseEntity<List<DictionaryResponse>> getLists() {
+    public ResponseEntity<List<ListResponse>> getLists() {
         return ResponseEntity.ok(listService.getLists());
     }
 
     @PostMapping
     public ResponseEntity<BasicResponse> createList(@Valid @RequestBody ListRequest request) {
         var dto = listService.createList(request);
-        return ResponseEntity.created(UriBuilder.getUri("/list/{id}", dto.getId())).body(
+        return ResponseEntity.created(UriBuilder.getUri("/lists/{id}", dto.getId())).body(
                 new BasicResponse(true, "Pomyślnie utworzono listę", dto)
         );
     }

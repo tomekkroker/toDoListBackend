@@ -1,6 +1,5 @@
 package com.todolist.todolist.controller;
 
-import com.todolist.todolist.dto.DictionaryResponse;
 import com.todolist.todolist.dto.task.TaskRequest;
 import com.todolist.todolist.dto.task.TaskResponse;
 import com.todolist.todolist.service.TaskService;
@@ -33,14 +32,14 @@ public class TaskController {
     }
 
     @GetMapping
-    public ResponseEntity<List<DictionaryResponse>> getTasks() {
+    public ResponseEntity<List<TaskResponse>> getTasks() {
         return ResponseEntity.ok(taskService.getTasks());
     }
 
     @PostMapping
     public ResponseEntity<BasicResponse> createTask(@Valid @RequestBody TaskRequest request) {
         var dto = taskService.createTask(request);
-        return ResponseEntity.created(UriBuilder.getUri("/task/{id}", dto.getId())).body(
+        return ResponseEntity.created(UriBuilder.getUri("/{id}", dto.getId())).body(
                 new BasicResponse(true, "Pomyślnie utworzono zadanie", dto)
         );
     }

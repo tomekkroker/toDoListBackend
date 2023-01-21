@@ -1,6 +1,5 @@
 package com.todolist.todolist.service;
 
-import com.todolist.todolist.dto.DictionaryResponse;
 import com.todolist.todolist.dto.task.TaskRequest;
 import com.todolist.todolist.dto.task.TaskResponse;
 import com.todolist.todolist.model.TaskEntity;
@@ -28,9 +27,9 @@ public class TaskService {
     }
 
     @Transactional
-    public List<DictionaryResponse> getTasks() {
+    public List<TaskResponse> getTasks() {
         return taskRepository.findAll().stream()
-                .map(DictionaryResponse::fromEntity)
+                .map(TaskResponse::fromEntity)
                 .collect(Collectors.toList());
     }
 
@@ -69,6 +68,7 @@ public class TaskService {
                 .deadline(dto.getDeadline())
                 .description(dto.getDescription())
                 .priority(dto.getPriority())
+                .listId(dto.getListId())
                 .build();
     }
 }

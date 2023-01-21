@@ -28,6 +28,9 @@ public class TaskResponse {
     @ApiModelProperty(notes = "Opis")
     private String description;
 
+    @ApiModelProperty(notes = "Id listy")
+    private Integer listId;
+
     public Integer getId() {
         return id;
     }
@@ -68,6 +71,14 @@ public class TaskResponse {
         this.description = description;
     }
 
+    public Integer getListId() {
+        return listId;
+    }
+
+    public void setListId(Integer listId) {
+        this.listId = listId;
+    }
+
     public static TaskResponse fromEntity(TaskEntity entity) {
         return builder()
                 .id(entity.getId())
@@ -75,6 +86,7 @@ public class TaskResponse {
                 .deadline(entity.getDeadline())
                 .priority(entity.getPriority())
                 .description(entity.getDescription())
+                .listId(entity.getListId())
                 .build();
     }
 }
