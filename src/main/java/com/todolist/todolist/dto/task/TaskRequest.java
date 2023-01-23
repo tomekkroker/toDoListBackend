@@ -4,9 +4,15 @@ import com.sun.istack.NotNull;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.LocalDate;
+import lombok.Builder;
 
+@Builder
 @ApiModel(description = "Klasa reprezentująca żądanie dodania nowego zadania.")
 public class TaskRequest {
+
+    @ApiModelProperty(notes = "Id")
+    @NotNull
+    private Integer id;
 
     @ApiModelProperty(notes = "Nazwa")
     @NotNull
@@ -23,6 +29,14 @@ public class TaskRequest {
 
     @ApiModelProperty(notes = "Id listy")
     private Integer listId;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
