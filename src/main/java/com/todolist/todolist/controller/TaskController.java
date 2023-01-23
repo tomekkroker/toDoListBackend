@@ -39,7 +39,7 @@ public class TaskController {
     @PostMapping
     public ResponseEntity<BasicResponse> createTask(@Valid @RequestBody TaskRequest request) {
         var dto = taskService.createTask(request);
-        return ResponseEntity.created(UriBuilder.getUri("/{id}", dto.getId())).body(
+        return ResponseEntity.created(UriBuilder.getUri("tasks/{id}", dto.getId())).body(
                 new BasicResponse(true, "Pomyślnie utworzono zadanie", dto)
         );
     }

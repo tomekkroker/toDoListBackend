@@ -63,6 +63,7 @@ public class ListService {
 
     public ListEntity fromSimpleDto(ListRequest dto) {
         return ListEntity.builder()
+            .id(dto.getId())
                 .name(dto.getName())
                 .priority(dto.getPriority())
                 .build();
