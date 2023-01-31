@@ -6,7 +6,12 @@ import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel(description = "Klasa reprezentująca żądanie dodania nowej listy zadań.")
 
-public class ToDoListRequest {
+public class ListRequest {
+
+    @ApiModelProperty(notes = "Id")
+    @NotNull
+    private Integer id;
+
 
     @ApiModelProperty(notes = "Nazwa")
     @NotNull
@@ -14,6 +19,14 @@ public class ToDoListRequest {
 
     @ApiModelProperty(notes = "Priorytet")
     private String priority;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
