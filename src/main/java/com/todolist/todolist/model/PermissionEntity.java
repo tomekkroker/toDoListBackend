@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
-@Table(name = "permission", schema = "dictionary")
+@Table(name = "permission", schema = "public")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -28,7 +28,7 @@ public class PermissionEntity extends RevisableEntity{
     @SequenceGenerator(
             name = "permission_sequence_generator",
             sequenceName = "permission_id_sequence",
-            schema = "dictionary",
+            schema = "public",
             allocationSize = 1
     )
     @Column(name = "id")
