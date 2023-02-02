@@ -28,6 +28,9 @@ public class ListEntity {
     @Column(name = "priority")
     private String priority;
 
+    @Column(name = "user_login")
+    private String userLogin;
+
     public Integer getId() {
         return id;
     }
@@ -50,5 +53,13 @@ public class ListEntity {
 
     public void setPriority(String priority) {
         this.priority = priority;
+    }
+
+    public String getUserLogin() {
+        return userLogin;
+    }
+
+    public void setUserLogin(String userLogin) {
+        this.userLogin = userLogin;
     }
 }

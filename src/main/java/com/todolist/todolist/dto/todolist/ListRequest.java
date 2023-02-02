@@ -12,13 +12,15 @@ public class ListRequest {
     @NotNull
     private Integer id;
 
-
     @ApiModelProperty(notes = "Nazwa")
     @NotNull
     private String name;
 
     @ApiModelProperty(notes = "Priorytet")
     private String priority;
+
+    @ApiModelProperty(notes = "Login usera")
+    private String userLogin;
 
     public Integer getId() {
         return id;
@@ -43,4 +45,8 @@ public class ListRequest {
     public void setPriority(String priority) {
         this.priority = priority;
     }
+
+    public String getUserLogin() {return userLogin; }
+
+    public void setUserLogin(String userLogin) { this.userLogin = userLogin; }
 }

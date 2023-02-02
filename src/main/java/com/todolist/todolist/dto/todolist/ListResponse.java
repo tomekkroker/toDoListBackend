@@ -22,6 +22,9 @@ public class ListResponse {
     @ApiModelProperty(notes = "Priorytet")
     private String priority;
 
+    @ApiModelProperty(notes = "Login usera")
+    private String userLogin;
+
     public Integer getId() {
         return id;
     }
@@ -46,11 +49,20 @@ public class ListResponse {
         this.priority = priority;
     }
 
+    public String getUserLogin() {
+        return userLogin;
+    }
+
+    public void setUserLogin(String userLogin) {
+        this.userLogin = userLogin;
+    }
+
     public static ListResponse fromEntity(ListEntity entity) {
         return builder()
                 .id(entity.getId())
                 .name(entity.getName())
                 .priority(entity.getPriority())
+                .userLogin(entity.getUserLogin())
                 .build();
     }
 }

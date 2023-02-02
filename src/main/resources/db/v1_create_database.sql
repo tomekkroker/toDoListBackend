@@ -7,12 +7,13 @@ CREATE DATABASE "toDoList"
     TABLESPACE = pg_default
     CONNECTION LIMIT = -1;
 
+--Drop table user
 DROP TABLE IF EXISTS public.user;
-DROP TABLE  IF EXISTS public.user;
+--Create table task
 CREATE TABLE public.user
 (
-    id          SERIAL PRIMARY KEY,
-    login       VARCHAR(20),
+    id          SERIAL,
+    login       VARCHAR(20) PRIMARY KEY,
     password    VARCHAR(20)
 );
 
@@ -20,17 +21,17 @@ CREATE TABLE public.user
 DROP TABLE  IF EXISTS public.task;
 --Drop table list
 DROP TABLE  IF EXISTS public.list;
--- Create the first table
+-- Create table list
 CREATE TABLE public.list
 (
     id       SERIAL PRIMARY KEY,
     name     VARCHAR(20) NOT NULL,
-    priority VARCHAR(8)
---     user_id INT,
---     CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES public.user (id)
+    priority VARCHAR(8),
+    user_login VARCHAR(20),
+    CONSTRAINT fk_user FOREIGN KEY (user_login) REFERENCES public.user (login)
 );
 
--- Create the second table
+-- Create table task
 CREATE TABLE public.task
 (
     id          SERIAL PRIMARY KEY,
