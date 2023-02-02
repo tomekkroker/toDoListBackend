@@ -1,11 +1,20 @@
 -- Database: toDoList
-DROP DATABASE IF EXISTS toDoList;
+DROP DATABASE IF EXISTS "toDoList";
 CREATE DATABASE "toDoList"
     WITH
     OWNER = postgres
     ENCODING = 'UTF8'
     TABLESPACE = pg_default
     CONNECTION LIMIT = -1;
+
+DROP TABLE IF EXISTS public.user;
+DROP TABLE  IF EXISTS public.user;
+CREATE TABLE public.user
+(
+    id          SERIAL PRIMARY KEY,
+    login       VARCHAR(20),
+    password    VARCHAR(20)
+);
 
 --Drop table task
 DROP TABLE  IF EXISTS public.task;
@@ -32,13 +41,3 @@ CREATE TABLE public.task
     list_id INT,
     CONSTRAINT fk_list FOREIGN KEY (list_id) REFERENCES public.list (id)
 );
-
---Drop table user
--- DROP TABLE  IF EXISTS public.user_entity;
--- Create the third table
--- CREATE TABLE public.user
--- (
---     id          SERIAL PRIMARY KEY,
---     login       VARCHAR(20),
---     password    VARCHAR(20)
--- );
