@@ -29,7 +29,7 @@ public class UserController {
         return ResponseEntity.ok(UserResponse.fromEntity(userService.getUser(login, password)));
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<BasicResponse> createUser(@Valid @RequestBody UserRequest request) {
         var dto = userService.createUser(request);
         return ResponseEntity.created(UriBuilder.getUri("/register", dto.getLogin())).body(
