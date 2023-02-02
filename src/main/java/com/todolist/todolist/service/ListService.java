@@ -4,6 +4,7 @@ import com.todolist.todolist.dto.todolist.ListRequest;
 import com.todolist.todolist.dto.todolist.ListResponse;
 import com.todolist.todolist.model.ListEntity;
 import com.todolist.todolist.repository.ListRepository;
+import com.todolist.todolist.repository.UserRepository;
 import com.todolist.todolist.utils.BadRequestException;
 import com.todolist.todolist.utils.NotFoundException;
 import java.util.List;
@@ -15,9 +16,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class ListService {
 
     private final ListRepository listRepository;
+    private final UserRepository userRepository;
 
-    public ListService(ListRepository listRepository) {
+    public ListService(ListRepository listRepository, UserRepository userRepository) {
         this.listRepository = listRepository;
+        this.userRepository = userRepository;
     }
 
     @Transactional
@@ -38,6 +41,9 @@ public class ListService {
         if (listRepository.existsById(request.getId())) {
             throw new BadRequestException("Istnieje już lista o takim id");
         }
+        if (!userRepository.existsByLogin(request.getUserLogin())) {
+            throw new BadRequestException("Nie istnieje taki użytkownik o takim loginie");
+        }
         return ListResponse.fromEntity(listRepository.save(fromSimpleDto(request)));
     }
 
@@ -49,6 +55,7 @@ public class ListService {
         if (!id.equals(request.getId())) {
             throw new BadRequestException("Id w urlu nie zgadza się z id w requeście");
         }
+        request.setUserLogin(listRepository.findById(id).get().getUserLogin());
         return ListResponse.fromEntity(listRepository.save(fromSimpleDto(request)));
     }
 
@@ -66,6 +73,7 @@ public class ListService {
             .id(dto.getId())
                 .name(dto.getName())
                 .priority(dto.getPriority())
+                .userLogin(dto.getUserLogin())
                 .build();
     }
 }
