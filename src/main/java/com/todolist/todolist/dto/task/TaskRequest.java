@@ -10,10 +10,6 @@ import lombok.Builder;
 @ApiModel(description = "Klasa reprezentująca żądanie dodania nowego zadania.")
 public class TaskRequest {
 
-    @ApiModelProperty(notes = "Id")
-    @NotNull
-    private Integer id;
-
     @ApiModelProperty(notes = "Nazwa")
     @NotNull
     private String name;
@@ -29,14 +25,6 @@ public class TaskRequest {
 
     @ApiModelProperty(notes = "Id listy")
     private Integer listId;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

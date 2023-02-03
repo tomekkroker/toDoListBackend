@@ -35,9 +35,6 @@ public class ListService {
 
     @Transactional
     public ListResponse createList(ListRequest request) {
-        if (listRepository.existsById(request.getId())) {
-            throw new BadRequestException("Istnieje już lista o takim id");
-        }
         return ListResponse.fromEntity(listRepository.save(fromSimpleDto(request)));
     }
 
@@ -46,10 +43,7 @@ public class ListService {
         if (!listRepository.existsById(id)) {
             throw new NotFoundException("List", "id", id);
         }
-        if (!id.equals(request.getId())) {
-            throw new BadRequestException("Id w urlu nie zgadza się z id w requeście");
-        }
-        return ListResponse.fromEntity(listRepository.save(fromSimpleDto(request)));
+        return ListResponse.fromEntity(listRepository.save(fromSimpleDtoEdit(request, id)));
     }
 
     @Transactional
@@ -61,9 +55,16 @@ public class ListService {
         }
     }
 
+    public ListEntity fromSimpleDtoEdit(ListRequest dto, Integer id) {
+        return ListEntity.builder()
+                .id(id)
+                .name(dto.getName())
+                .priority(dto.getPriority())
+                .build();
+    }
+
     public ListEntity fromSimpleDto(ListRequest dto) {
         return ListEntity.builder()
-            .id(dto.getId())
                 .name(dto.getName())
                 .priority(dto.getPriority())
                 .build();

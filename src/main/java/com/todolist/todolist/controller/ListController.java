@@ -39,7 +39,7 @@ public class ListController {
     @PostMapping
     public ResponseEntity<BasicResponse> createList(@Valid @RequestBody ListRequest request) {
         var dto = listService.createList(request);
-        return ResponseEntity.created(UriBuilder.getUri("/lists/{id}", dto.getId())).body(
+        return ResponseEntity.created(UriBuilder.getUri("/lists", dto.getId())).body(
                 new BasicResponse(true, "Pomyślnie utworzono listę", dto)
         );
     }

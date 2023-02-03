@@ -1,6 +1,8 @@
 -- Database: toDoList
-DROP DATABASE IF EXISTS toDoList;
-CREATE DATABASE "toDoList"
+DROP
+DATABASE IF EXISTS toDoList;
+CREATE
+DATABASE "toDoList"
     WITH
     OWNER = postgres
     ENCODING = 'UTF8'
@@ -8,9 +10,9 @@ CREATE DATABASE "toDoList"
     CONNECTION LIMIT = -1;
 
 --Drop table task
-DROP TABLE  IF EXISTS public.task;
+DROP TABLE IF EXISTS public.task;
 --Drop table list
-DROP TABLE  IF EXISTS public.list;
+DROP TABLE IF EXISTS public.list;
 -- Create the first table
 CREATE TABLE public.list
 (
@@ -29,7 +31,7 @@ CREATE TABLE public.task
     priority    VARCHAR(20),
     deadline    DATE,
     description VARCHAR(256),
-    list_id INT,
+    list_id     INT,
     CONSTRAINT fk_list FOREIGN KEY (list_id) REFERENCES public.list (id)
 );
 

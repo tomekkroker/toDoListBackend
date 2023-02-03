@@ -8,25 +8,13 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class ListRequest {
 
-    @ApiModelProperty(notes = "Id")
-    @NotNull
-    private Integer id;
-
-
     @ApiModelProperty(notes = "Nazwa")
     @NotNull
     private String name;
 
+    @NotNull
     @ApiModelProperty(notes = "Priorytet")
     private String priority;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

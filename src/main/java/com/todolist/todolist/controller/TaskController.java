@@ -36,6 +36,12 @@ public class TaskController {
         return ResponseEntity.ok(taskService.getTasks());
     }
 
+    @GetMapping("/list/{id}")
+    public ResponseEntity<List<TaskResponse>> getListTasks(@PathVariable Integer id) {
+        return ResponseEntity.ok(taskService.getListTasks(id));
+    }
+
+
     @PostMapping
     public ResponseEntity<BasicResponse> createTask(@Valid @RequestBody TaskRequest request) {
         var dto = taskService.createTask(request);

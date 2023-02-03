@@ -37,10 +37,16 @@ public class TaskService {
     }
 
     @Transactional
+    public List<TaskResponse> getListTasks(Integer id) {
+        return taskRepository.findAll()
+                .stream()
+                .filter(task -> task.getListId().equals(id))
+                .map(TaskResponse::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
     public TaskResponse createTask(TaskRequest request) {
-        if (taskRepository.existsById(request.getId())) {
-            throw new BadRequestException("Istnieje już zadanie o takim id");
-        }
         if (!listRepository.existsById(request.getListId())) {
             throw new BadRequestException("Nie istnieje taka lista o takim listId");
         }
@@ -52,13 +58,10 @@ public class TaskService {
         if (!taskRepository.existsById(id)) {
             throw new NotFoundException("Task", "id", id);
         }
-        if (!id.equals(request.getId())) {
-            throw new BadRequestException("Id w urlu nie zgadza się z id w requeście");
-        }
         if (!listRepository.existsById(request.getListId())) {
             throw new BadRequestException("Nie istnieje taka lista o takim listId");
         }
-        return TaskResponse.fromEntity(taskRepository.save(fromSimpleDto(request)));
+        return TaskResponse.fromEntity(taskRepository.save(fromSimpleDtoEdit(id, request)));
     }
 
     @Transactional
@@ -72,7 +75,17 @@ public class TaskService {
 
     public TaskEntity fromSimpleDto(TaskRequest dto) {
         return TaskEntity.builder()
-                .id(dto.getId())
+                .name(dto.getName())
+                .deadline(dto.getDeadline())
+                .description(dto.getDescription())
+                .priority(dto.getPriority())
+                .listId(dto.getListId())
+                .build();
+    }
+
+    public TaskEntity fromSimpleDtoEdit(Integer id, TaskRequest dto) {
+        return TaskEntity.builder()
+                .id(id)
                 .name(dto.getName())
                 .deadline(dto.getDeadline())
                 .description(dto.getDescription())
