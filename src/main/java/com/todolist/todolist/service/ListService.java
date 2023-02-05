@@ -28,7 +28,7 @@ public class ListService {
     @Transactional
     public ListEntity getList(Integer id) {
         return listRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("ToDoList", "id", id));
+                .orElseThrow(() -> new NotFoundException("List", "id", id));
     }
 
     @Transactional

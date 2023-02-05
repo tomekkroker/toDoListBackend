@@ -60,7 +60,7 @@ public class TaskService {
             throw new NotFoundException("Task", "id", id);
         }
         if (!listRepository.existsById(request.getListId())) {
-            throw new BadRequestException("Nie istnieje taka lista o takim listId");
+            throw new BadRequestException("Nie istnieje taka lista o takim id");
         }
         return TaskResponse.fromEntity(taskRepository.save(fromSimpleDtoEdit(id, request)));
     }
