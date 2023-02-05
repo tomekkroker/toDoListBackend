@@ -31,7 +31,8 @@ public class TaskService {
 
     @Transactional
     public List<TaskResponse> getTasks() {
-        return taskRepository.findAll().stream()
+        return taskRepository.findAll()
+                .stream()
                 .map(TaskResponse::fromEntity)
                 .collect(Collectors.toList());
     }

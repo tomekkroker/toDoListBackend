@@ -4,10 +4,11 @@ import com.todolist.todolist.dto.todolist.ListRequest;
 import com.todolist.todolist.dto.todolist.ListResponse;
 import com.todolist.todolist.model.ListEntity;
 import com.todolist.todolist.repository.ListRepository;
-import com.todolist.todolist.utils.BadRequestException;
+import com.todolist.todolist.repository.TaskRepository;
 import com.todolist.todolist.utils.NotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,9 +16,13 @@ import org.springframework.transaction.annotation.Transactional;
 public class ListService {
 
     private final ListRepository listRepository;
+    private final TaskRepository taskRepository;
 
-    public ListService(ListRepository listRepository) {
+    @Autowired
+    public ListService(ListRepository listRepository,
+            TaskRepository taskRepository) {
         this.listRepository = listRepository;
+        this.taskRepository = taskRepository;
     }
 
     @Transactional
@@ -49,6 +54,8 @@ public class ListService {
     @Transactional
     public void deleteList(Integer id) {
         if (listRepository.existsById(id)) {
+
+            taskRepository.deleteAllByListId(id);
             listRepository.deleteById(id);
         } else {
             throw new NotFoundException("List", "id", id);
